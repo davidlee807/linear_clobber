@@ -4,22 +4,22 @@ import time
 sys.setrecursionlimit(10000000)
 
 right_checked = {17:{"ox_oox_oxox_oxoxo"},26:{"ox_oxx_oxox_oxoxoxoxoxoxox"},8:{"ooxoxoxo"}}
-left_checked = {}
+left_checked={9:{'oox_oxoxo'},11:{"ox_oxoxoxox"},12:{'oxoxoxoxoxox'},13:{'ox_ooxoxoxoxo'},15:{"oxox_oxoxoxoxox"},17:{"oxox_ooxoxoxoxoxo"},26:{'ox_oxox_oxoxoxoxoxoxoxoxox'}}
 
 
 class ALC:
     def __init__(self, k, player):
         self.board = 'ox' * k
         self.turn = player
-class Linked_board:
+
+class Linked_ALC:
     def __init__(self, k, player):
         self.board = 'ox' * k
         self.turn = player
         self.child = set()
 
-
-
 def revstring(s): return s[::-1]
+
 def negstring(s): 
     new_s = ''
     for c in s:
@@ -30,12 +30,10 @@ def negstring(s):
     if new_s[0] == 'x':
         return revstring(new_s)
     return new_s
-      
+
 def count(brd): #simplfy before use, need o in front
     brd_count_list = [0,0,0,0,0,0,0,0]
-    
     brd_list = brd.split('_')
-    
     for subgame in brd_list:
             if subgame[0] == 'x':
                 print('x game produced')
@@ -884,7 +882,7 @@ def autoplay(game):
                                 exit()
                             else:
                                 left_checked[playing_game_length].add(playing_game.board)
-                                #print(f"autoplay: {game.board},{game.turn}")
+                                
             
                                 autoplay(playing_game)
     
