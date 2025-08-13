@@ -1,7 +1,7 @@
 from copy import deepcopy
 import sys
 import time
-sys.setrecursionlimit(10000000)
+#sys.setrecursionlimit(10000000)
 
 
 class ALC:
@@ -792,53 +792,11 @@ def autoplay_tree(game):
 
 
 #for print data
-# with open('data.csv','w') as f:
-#     f.write("length,time,left_node,right_node\n")
-#     left_checked = {}
-#     right_checked = {}
-#     for i in range(4,30):
-#         if i*2 < 26:
-#             for j in range(27):
-#                 right_checked[j] =  set()
-#                 left_checked[j] = set()
-#         else:
-#             for j in range(i*2+1):
-#                 right_checked[j] =  set()
-#                 left_checked[j] = set()
-
-#         right_checked[8].add("ooxoxoxo")
-#         right_checked[17].add("ox_oox_oxox_oxoxo")
-#         right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
-#         left_checked[9].add('oox_oxoxo')
-#         left_checked[11].add("ox_oxoxoxox")
-#         left_checked[12].add('oxoxoxoxoxox')
-#         left_checked[13].add('ox_ooxoxoxoxo')
-#         left_checked[15].add("oxox_oxoxoxoxox")
-#         left_checked[17].add("oxox_ooxoxoxoxoxo")
-#         left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
-#         a = ALC(i,'x')
-#         parent = a
-#         start = time.time()
-#         autoplay(a)
-#         end = time.time()
-#         right_amount = 0
-#         for length in right_checked:
-#             right_amount += len(right_checked[length])
-#         left_amount = 0
-#         for length in left_checked:
-#             left_amount += len(left_checked[length])
-#         print(f"{i},{end-start},{left_amount},{right_amount}")
-#         f.write(f"{i},{end-start},{left_amount},{right_amount}\n")
-#         right_checked.clear()
-#         left_checked.clear()
-
-
-
-with open('tree.txt','w') as f:
+with open('data.csv','w') as f:
+    f.write("length,time,left_node,right_node\n")
     left_checked = {}
     right_checked = {}
-    for i in [1,2,4,5,6,7,8]:
-    
+    for i in range(4,30):
         if i*2 < 26:
             for j in range(27):
                 right_checked[j] =  set()
@@ -847,6 +805,7 @@ with open('tree.txt','w') as f:
             for j in range(i*2+1):
                 right_checked[j] =  set()
                 left_checked[j] = set()
+
         right_checked[8].add("ooxoxoxo")
         right_checked[17].add("ox_oox_oxox_oxoxo")
         right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
@@ -857,10 +816,10 @@ with open('tree.txt','w') as f:
         left_checked[15].add("oxox_oxoxoxoxox")
         left_checked[17].add("oxox_ooxoxoxoxoxo")
         left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
-        a = Linked_ALC(i,'x')
+        a = ALC(i,'x')
         parent = a
         start = time.time()
-        autoplay_tree(a)
+        autoplay(a)
         end = time.time()
         right_amount = 0
         for length in right_checked:
@@ -869,10 +828,51 @@ with open('tree.txt','w') as f:
         for length in left_checked:
             left_amount += len(left_checked[length])
         print(f"{i},{end-start},{left_amount},{right_amount}")
-        f.write(f"{i},{end-start},{left_amount},{right_amount}\n\n")
-        f.write(str(a))
+        f.write(f"{i},{end-start},{left_amount},{right_amount}\n")
         right_checked.clear()
         left_checked.clear()
+
+
+
+# with open('tree.txt','w') as f:
+#     left_checked = {}
+#     right_checked = {}
+#     for i in [1,2,4,5,6,7,8]:
+    
+#         if i*2 < 26:
+#             for j in range(27):
+#                 right_checked[j] =  set()
+#                 left_checked[j] = set()
+#         else:
+#             for j in range(i*2+1):
+#                 right_checked[j] =  set()
+#                 left_checked[j] = set()
+#         right_checked[8].add("ooxoxoxo")
+#         right_checked[17].add("ox_oox_oxox_oxoxo")
+#         right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
+#         left_checked[9].add('oox_oxoxo')
+#         left_checked[11].add("ox_oxoxoxox")
+#         left_checked[12].add('oxoxoxoxoxox')
+#         left_checked[13].add('ox_ooxoxoxoxo')
+#         left_checked[15].add("oxox_oxoxoxoxox")
+#         left_checked[17].add("oxox_ooxoxoxoxoxo")
+#         left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
+#         a = Linked_ALC(i,'x')
+#         parent = a
+#         start = time.time()
+#         autoplay_tree(a)
+#         end = time.time()
+#         right_amount = 0
+#         for length in right_checked:
+#             right_amount += len(right_checked[length])
+#         left_amount = 0
+#         for length in left_checked:
+#             left_amount += len(left_checked[length])
+#         print(f"{i},{end-start},{left_amount},{right_amount}")
+#         f.write(f"{i},{end-start},{left_amount},{right_amount}\n\n")
+#         f.write(str(a))
+#         right_checked.clear()
+#         left_checked.clear()
         
 
 
