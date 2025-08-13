@@ -13,6 +13,7 @@ class ALC:
         self.turn = player
 
 class Linked_ALC:
+    #special version for printing tree
     def __init__(self, k, player):
         self.board = 'ox' * k
         self.turn = player
@@ -694,7 +695,6 @@ def autoplay(game):
             elif playing_game.board in right_checked[playing_game_length]:
                 pass
             else:
-                
                 vector = count(playing_game.board)
                 if check_vector(vector,playing_game.turn) == False:
                     
@@ -712,7 +712,7 @@ def autoplay(game):
                 else:
                     right_checked[playing_game_length].add(playing_game.board)
 
-                    #print(f"autoplay: {game.board},{game.turn}")
+
                     autoplay(playing_game)
     else:
         o_position = []
@@ -889,7 +889,6 @@ def autoplay(game):
 
 #from https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
 def print_tree(node, level=0, prefix=""):
-
     indent = "    " * level  # Adjust indentation based on level
     print(f"{indent}{prefix}{node.board}\n")
     
