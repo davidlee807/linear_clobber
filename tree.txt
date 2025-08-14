@@ -1,0 +1,245 @@
+1,0.0,7,3
+
+x
+ox
+
+2,0.0,8,4
+
+x
+oxox
+
+	o
+	oxx
+
+		x
+		ox
+
+4,0.0,9,5
+
+x
+oxoxoxox
+
+	o
+	oxoxo
+
+		x
+		ox_oxx
+
+			o
+			oxx
+
+				x
+				ox
+
+		x
+		ox
+
+5,0.0,11,5
+
+x
+oxoxoxoxox
+
+	o
+	oxoxoxo
+
+		x
+		oxx
+
+		x
+		ooxoxo
+
+			o
+			oxx
+
+				x
+				ox
+
+		x
+		oxox
+
+			o
+			oxx
+
+6,0.0013549327850341797,7,3
+
+x
+oxoxoxoxoxox
+
+7,0.0,16,8
+
+x
+oxoxoxoxoxoxox
+
+	o
+	oxoxoxoxoxo
+
+		x
+		ox_ooxoxoxo
+
+			o
+			ooxoxoxo
+
+		x
+		ox_oxx
+
+		x
+		oxoxoxox
+
+			o
+			oxoxo
+
+		x
+		oxox_ooxoxo
+
+			o
+			ox_oxx_oxox
+
+				x
+				oxx_oxox
+
+					o
+					oxx_oxx
+
+						x
+						ox_oxx
+
+				x
+				ox_oxx
+
+				x
+				ox
+
+				x
+				oxx
+
+				x
+				oxox
+
+					o
+					oxx
+
+		x
+		ooxoxoxoxo
+
+			o
+			oxoxo
+
+				x
+				ox_oxx
+
+					o
+					oxx
+
+						x
+						ox
+
+				x
+				ox
+
+8,0.0,22,9
+
+x
+oxoxoxoxoxoxoxox
+
+	o
+	oxoxoxoxoxoxo
+
+		x
+		oxox_ooxoxoxo
+
+			o
+			oxx_ooxoxoxo
+
+				x
+				ox
+
+				x
+				oxx_oxox
+
+					o
+					oxx_oxx
+
+				x
+				oxx_ooxoxo
+
+					o
+					oxx_oxx
+
+				x
+				ox_oxx
+
+				x
+				ox_ooxoxoxo
+
+					o
+					ooxoxoxo
+
+		x
+		ox_ooxoxoxoxo
+
+		x
+		ooxoxoxoxoxo
+
+			o
+			oxoxoxo
+
+				x
+				oxx
+
+				x
+				ooxoxo
+
+					o
+					oxx
+
+						x
+						ox
+
+				x
+				oxox
+
+					o
+					oxx
+
+		x
+		ooxoxo
+
+		x
+		ox_oxx_oxoxoxox
+
+			o
+			ox_oxx_oxoxo
+
+				x
+				oxoxo
+
+					o
+					oxx
+
+				x
+				oxx
+
+				x
+				oxx_oxx
+
+					o
+					oxx
+
+				x
+				oxx_oxoxo
+
+					o
+					oxx_oxx
+
+						x
+						ox_oxx
+
+							o
+							oxx
+
+		x
+		oxoxoxoxox
+
+			o
+			oxoxoxo
+
