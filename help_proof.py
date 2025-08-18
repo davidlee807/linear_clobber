@@ -1,8 +1,5 @@
 from copy import deepcopy
-import sys
 import time
-#sys.setrecursionlimit(10000000)
-
 
 class ALC:
     def __init__(self, k, player):
@@ -15,7 +12,7 @@ class Linked_ALC:
         self.board = 'ox' * k
         self.turn = player
         self.child = set()
-        #from https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
+    #from https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
     def __str__(self, level=0):
         if self.board == '':
             return ""
@@ -423,7 +420,6 @@ def autoplay(game):
     if len(game.board) == 0:
         pass
 
-
     elif game.turn == 'x':
         playing_game = ALC(0,'x')
         playing_game.board = right_strat(game.board)
@@ -451,7 +447,6 @@ def autoplay(game):
             else:
                 right_checked[playing_game_length].add(playing_game.board)
                 autoplay(playing_game)
-
 
     else:
         board_list = game.board.split('_')
@@ -590,7 +585,6 @@ def autoplay_tree(game):
     if len(game.board) == 0:
         pass
     
-
     elif game.turn == 'x':
         playing_game = Linked_ALC(0,'x')
         playing_game.board = right_strat(game.board)
@@ -705,8 +699,6 @@ def autoplay_tree(game):
                                     left_checked[playing_game_length].add(playing_game.board)
                                     game.child.add(playing_game)
                                     autoplay_tree(playing_game)
-
-
                             break
 
         #cheat end
