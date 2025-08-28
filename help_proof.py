@@ -450,81 +450,73 @@ def autoplay(game):
 
     else:
         board_list = game.board.split('_')
-        # #cheat start
+        #cheat start
         
-        # process = False
-        # if len(board_list) == 1:
-        #     if game.board[0:2] == 'ox' and game.board[-1] == 'o':
-        #         length = len(game.board)
-        #         if length >= 17:
-        #             process = True
-        #             remainder = length % 4
-        #             for i in range(0,length,2):
-        #                 playing_game = ALC(0,'x')
-        #                 if i == 0:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
+        process = False
+        if len(board_list) == 1:
+            if game.board[0:2] == 'ox' and game.board[-1] == 'o':
+                length = len(game.board)
+                
+                if length >= 17:
+                    process = True
+                    remainder = length % 4
+                    for i in range(0,length,2):
+                        playing_game = ALC(0,'x')
+                        
+                        if i == 0 or i == 6:
+                            oo = 'oo'+'xo' * int((length-3-i)/2)
+                            playing_game.board = f"{oo}"
+                            playing_game_length = len(playing_game.board)
 
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         autoplay(playing_game)
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
 
-        #                 elif i == 6:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
+                        elif i == 12:
+                            oo = 'oo'+'xo' * int((length-3-i)/2)
+                            playing_game.board = f"ox_oxox_{oo}"
+                            playing_game_length = len(playing_game.board)
 
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         autoplay(playing_game)
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
 
-        #                 elif i == 12:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"ox_oxox_{oo}"
-        #                     playing_game_length = len(playing_game.board)
+                        elif i <= length-1 - i:
+                            #length of a less than oO
+                            oo = 'oo'+'xo' * int((length-3-i)/2)
+                            a = 'ox' * int(i/2)
+                            playing_game.board = f"{a}_{oo}"
+                            playing_game_length = len(playing_game.board)
 
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         autoplay(playing_game)
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
 
-        #                 elif i <= length-1 - i:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     a = 'ox' * int(i/2)
-        #                     playing_game.board = f"{a}_{oo}"
-        #                     playing_game_length = len(playing_game.board)
+                        else:
+                            #length of oO less than a
+                            if remainder == 1:
+                                oo = 'oo'+'xo' * int((length-3-i)/2)
+                                a = 'ox' * int(i/2)
+                                playing_game.board = f"{oo}_{a}"
+                                playing_game_length = len(playing_game.board)
 
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         autoplay(playing_game)
-
-        #                 else:
-        #                     if remainder == 1:
-        #                         oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                         a = 'ox' * int(i/2)
-        #                         playing_game.board = f"{oo}_{a}"
-        #                         playing_game_length = len(playing_game.board)
-
-        #                         if playing_game.board in left_checked[playing_game_length]:
-        #                             pass
-        #                         else:
-        #                             left_checked[playing_game_length].add(playing_game.board)
-        #                             autoplay(playing_game)
+                                if playing_game.board in left_checked[playing_game_length]:
+                                    pass
+                                else:
+                                    left_checked[playing_game_length].add(playing_game.board)
+                                    autoplay(playing_game)
 
 
-        #                     break
+                            break
 
-        # #cheat end
-        #if process == False:
-        if True:
+        #cheat end
+        if process == False:
             k = 0
             o_position = []
             temp_to_find_o = ''
@@ -627,84 +619,6 @@ def autoplay_tree(game):
 
     else:
         board_list = game.board.split('_')
-        # #cheat start
-        # k = 0
-        # process = False
-        # if len(board_list) == 1:
-        #     if game.board[0:2] == 'ox' and game.board[-1] == 'o':
-        #         length = len(game.board)
-        #         if length >= 17:
-        #             process = True
-        #             remainder = length % 4
-        #             for i in range(0,length,2):
-        #                 playing_game = Linked_ALC(0,'x')
-        #                 if i == 0:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-                                
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i == 6:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i == 12:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"ox_oxox_{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i <= length-1 - i:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     a = 'ox' * int(i/2)
-        #                     playing_game.board = f"{a}_{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 else:
-        #                     if remainder == 1:
-        #                         oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                         a = 'ox' * int(i/2)
-        #                         playing_game.board = f"{oo}_{a}"
-        #                         playing_game_length = len(playing_game.board)
-
-        #                         if playing_game.board in left_checked[playing_game_length]:
-        #                             pass
-        #                         else:
-        #                             left_checked[playing_game_length].add(playing_game.board)
-        #                             game.child.add(playing_game)
-        #                             autoplay_tree(playing_game)
-        #                     break
-
-        # #cheat end
-        #if process == False:
         if True:
             
             o_position = []
