@@ -604,294 +604,58 @@ def autoplay(game):
                                 left_checked[playing_game_length].add(playing_game.board)
                                 autoplay(playing_game)
     
-def autoplay_tree(game):
-    
-    if len(game.board) == 0:
-        pass
-    
-    elif game.turn == 'x':
-        playing_game = Linked_ALC(0,'x')
-        playing_game.board = right_strat(game.board)
-        playing_game.turn = 'o'
-        playing_game.board = ASF(playing_game.board)
-        playing_game_length = len(playing_game.board)
-        inside = False
-        for children in game.child:
-            if playing_game.board == children.board:
-                inside=  True
-                break 
-        if inside == False:
-            game.child.add(playing_game)
-        
-        if playing_game_length == 0:
-            pass
-        elif playing_game.board in right_checked[playing_game_length]:
-            pass
-        else:
-            vector = count(playing_game.board)
-            if check_vector(vector,playing_game.turn) == False:
-                print("x move vector error",vector)
-                print("parent",game.board,game.turn)
-                print("child",playing_game.board,playing_game.turn)
-                exit()
-            elif playing_game.board == 'ox_oxoxo' or playing_game.board == 'oxox_oxoxoxo' or playing_game.board == 'ox_oxox_oxoxoxoxoxoxoxo':
-                print("x move, in q",vector)
-                print("parent",game.board,game.turn)
-                print("child",playing_game.board,playing_game.turn)
-                exit()
-            elif vector[0] == 0 and vector[1] == 0 and vector[2] == 0 and vector[3] == 0 and vector[4] == 0 and vector[6] == 0 and vector[7] == 0:
-                pass
-            else:
-                
-                right_checked[playing_game_length].add(playing_game.board)
-                autoplay_tree(playing_game)
-
-
-    else:
-        board_list = game.board.split('_')
-        # # pruning start
-        # k = 0
-        # process = False
-        # if len(board_list) == 1:
-        #     if game.board[0:2] == 'ox' and game.board[-1] == 'o':
-        #         length = len(game.board)
-        #         if length >= 17:
-        #             process = True
-        #             remainder = length % 4
-        #             for i in range(0,length,2):
-        #                 playing_game = Linked_ALC(0,'x')
-        #                 if i == 0:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-                                
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i == 6:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i == 12:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     playing_game.board = f"ox_oxox_{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 elif i <= length-1 - i:
-        #                     oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                     a = 'ox' * int(i/2)
-        #                     playing_game.board = f"{a}_{oo}"
-        #                     playing_game_length = len(playing_game.board)
-
-        #                     if playing_game.board in left_checked[playing_game_length]:
-        #                         pass
-        #                     else:
-        #                         left_checked[playing_game_length].add(playing_game.board)
-        #                         game.child.add(playing_game)
-        #                         autoplay_tree(playing_game)
-
-        #                 else:
-        #                     if remainder == 1:
-        #                         oo = 'oo'+'xo' * int((length-3-i)/2)
-        #                         a = 'ox' * int(i/2)
-        #                         playing_game.board = f"{oo}_{a}"
-        #                         playing_game_length = len(playing_game.board)
-
-        #                         if playing_game.board in left_checked[playing_game_length]:
-        #                             pass
-        #                         else:
-        #                             left_checked[playing_game_length].add(playing_game.board)
-        #                             game.child.add(playing_game)
-        #                             autoplay_tree(playing_game)
-        #                     break
-
-        # # pruning end
-        #if process == False:
-        if True:
-            
-            o_position = []
-            temp_to_find_o = ''
-            for i in range(len(board_list)):
-                if board_list[i] == temp_to_find_o:
-                    k += len(board_list[i]) + 1
-                else:
-                    for j in range(len(board_list[i])):
-                        if board_list[i][j] == 'o':
-                            o_position.append(k+j)
-                    k += len(board_list[i]) + 1
-                    playing_game = board_list[i]
-            for position in o_position:
-                if position != 0 and game.board[position-1] == 'x' :
-                        playing_game = Linked_ALC(0,'x')
-                        playing_game.board = f"{game.board[0:position-1]}o_{game.board[position+1:]}"
-                        playing_game.turn = 'x'
-                        playing_game.board = ASF(playing_game.board)
-                        playing_game_length = len(playing_game.board)
-                        inside = False
-                        for children in game.child:
-                            if playing_game.board == children.board:
-                                inside=  True
-                                break 
-                        if inside == False:
-                            game.child.add(playing_game)
-                        
-                        if playing_game_length == 0:
-                            print('ERROR Right play to empty')
-                            exit()
-
-                        elif playing_game.board in left_checked[playing_game_length]:
-                            pass
-                        else:
-                            vector = count(playing_game.board)
-                            if check_vector(vector,playing_game.turn) == False:
-                                print('o move vector error',vector)
-                                print("parent",game.board,game.turn)
-                                print("child",playing_game.board,playing_game.turn)
-                                exit()
-                            else:
-                                left_checked[playing_game_length].add(playing_game.board)
-                                autoplay_tree(playing_game)
-                if position != len(game.board) - 1 and game.board[position+1] == 'x':
-                        playing_game = Linked_ALC(0,'x')
-                        playing_game.board = f"{game.board[0:position]}_o{game.board[position+2:]}"
-                        playing_game.turn = 'x'
-                        playing_game.board = ASF(playing_game.board)
-                        playing_game_length = len(playing_game.board)
-                        inside = False
-                        for children in game.child:
-                            if playing_game.board == children.board:
-                                inside=  True
-                                break 
-                        if inside == False:
-                            game.child.add(playing_game)
-                        
-                        if playing_game_length == 0:
-                            print('ERROR Right play to empty')
-                            exit()
-                        elif playing_game.board in left_checked[playing_game_length]:
-                            pass
-                        else:
-                            vector = count(playing_game.board)
-                            if check_vector(vector,playing_game.turn) == False:
-                                print('o move vector error',vector)
-                                print("parent",game.board,game.turn)
-                                print("child",playing_game.board,playing_game.turn)
-                                exit()
-                            else:
-                                left_checked[playing_game_length].add(playing_game.board)
-                                autoplay_tree(playing_game)
-
-
-
-
-
-
-
 
 #for print data
-with open('60.csv','w') as f:
-    f.write("length,time,left_node,right_node\n")
-    left_checked = {}
-    right_checked = {}
-    #for i in range(4,51):
-    if True:
-        i = 60
-        if i*2 < 26:
-            for j in range(27):
-                right_checked[j] =  set()
-                left_checked[j] = set()
-        else:
-            for j in range(i*2+1):
-                right_checked[j] =  set()
-                left_checked[j] = set()
+if __name__ == "__main__":
+    length_checking = int(input("Put the length you want to check till starting from 4: "))
 
-        right_checked[8].add("ooxoxoxo")
-        right_checked[17].add("ox_oox_oxox_oxoxo")
-        right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
-        left_checked[9].add('oox_oxoxo')
-        left_checked[11].add("ox_oxoxoxox")
-        left_checked[12].add('oxoxoxoxoxox')
-        left_checked[13].add('ox_ooxoxoxoxo')
-        left_checked[15].add("oxox_oxoxoxoxox")
-        left_checked[17].add("oxox_ooxoxoxoxoxo")
-        left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
-        a = ALC(i,'x')
-        parent = a
-        start = time.time()
-        autoplay(a)
-        end = time.time()
-        right_amount = 0
-        for length in right_checked:
-            right_amount += len(right_checked[length])
-        left_amount = 0
-        for length in left_checked:
-            left_amount += len(left_checked[length])
-        print(f"{i},{end-start},{left_amount},{right_amount}")
-        f.write(f"{i},{end-start},{left_amount},{right_amount}\n")
-        right_checked.clear()
-        left_checked.clear()
-
-
-
-# with open('tree.txt','w') as f:
-#     left_checked = {}
-#     right_checked = {}
-#     for i in [1,2,4,5,6,7,8]:
     
-#         if i*2 < 26:
-#             for j in range(27):
-#                 right_checked[j] =  set()
-#                 left_checked[j] = set()
-#         else:
-#             for j in range(i*2+1):
-#                 right_checked[j] =  set()
-#                 left_checked[j] = set()
-#         right_checked[8].add("ooxoxoxo")
-#         right_checked[17].add("ox_oox_oxox_oxoxo")
-#         right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
-#         left_checked[9].add('oox_oxoxo')
-#         left_checked[11].add("ox_oxoxoxox")
-#         left_checked[12].add('oxoxoxoxoxox')
-#         left_checked[13].add('ox_ooxoxoxoxo')
-#         left_checked[15].add("oxox_oxoxoxoxox")
-#         left_checked[17].add("oxox_ooxoxoxoxoxo")
-#         left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
-#         a = Linked_ALC(i,'x')
-#         parent = a
-#         start = time.time()
-#         autoplay_tree(a)
-#         end = time.time()
-#         right_amount = 0
-#         for length in right_checked:
-#             right_amount += len(right_checked[length])
-#         left_amount = 0
-#         for length in left_checked:
-#             left_amount += len(left_checked[length])
-#         print(f"{i},{end-start},{left_amount},{right_amount}")
-#         f.write(f"{i},{end-start},{left_amount},{right_amount}\n\n")
-#         f.write(str(a))
-#         right_checked.clear()
-#         left_checked.clear()
+    with open('data.csv','w') as f:
+        f.write("length,time,left_node,right_node\n")
+        left_checked = {}
+        right_checked = {}
+        for i in range(4,length_checking+1):
+        
+            
+            if i*2 < 26:
+                for j in range(27):
+                    right_checked[j] =  set()
+                    left_checked[j] = set()
+            else:
+                for j in range(i*2+1):
+                    right_checked[j] =  set()
+                    left_checked[j] = set()
+            #adding proved moves
+            right_checked[8].add("ooxoxoxo")
+            right_checked[17].add("ox_oox_oxox_oxoxo")
+            right_checked[26].add("ox_oxx_oxox_oxoxoxoxoxoxox")
+            left_checked[9].add('oox_oxoxo')
+            left_checked[11].add("ox_oxoxoxox")
+            left_checked[12].add('oxoxoxoxoxox')
+            left_checked[13].add('ox_ooxoxoxoxo')
+            left_checked[15].add("oxox_oxoxoxoxox")
+            left_checked[17].add("oxox_ooxoxoxoxoxo")
+            left_checked[26].add('ox_oxox_oxoxoxoxoxoxoxoxox')
+            a = ALC(i,'x')
+            parent = a
+            start = time.time()
+            autoplay(a)
+            end = time.time()
+            right_amount = 0
+            for length in right_checked:
+                right_amount += len(right_checked[length])
+            left_amount = 0
+            for length in left_checked:
+                left_amount += len(left_checked[length])
+            print(f"{i},{end-start},{left_amount},{right_amount}")
+            f.write(f"{i},{end-start},{left_amount},{right_amount}\n")
+            right_checked.clear()
+            left_checked.clear()
+
+
+
+
+
         
 
 
