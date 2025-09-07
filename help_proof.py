@@ -472,12 +472,22 @@ def autoplay(game):
                             else:
                                 left_checked[playing_game_length].add(playing_game.board)
                                 autoplay(playing_game)
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
 
                         elif i == 6:
                             oo = 'oo'+'xo' * int((length-3-i)/2)
                             playing_game.board = f"{oo}"
                             playing_game_length = len(playing_game.board)
 
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
                             if playing_game.board in left_checked[playing_game_length]:
                                 pass
                             else:
@@ -506,6 +516,11 @@ def autoplay(game):
                             else:
                                 left_checked[playing_game_length].add(playing_game.board)
                                 autoplay(playing_game)
+                            if playing_game.board in left_checked[playing_game_length]:
+                                pass
+                            else:
+                                left_checked[playing_game_length].add(playing_game.board)
+                                autoplay(playing_game)
 
                         else:
                             if remainder == 1:
@@ -519,8 +534,14 @@ def autoplay(game):
                                 else:
                                     left_checked[playing_game_length].add(playing_game.board)
                                     autoplay(playing_game)
+                                if playing_game.board in left_checked[playing_game_length]:
+                                    pass
+                                else:
+                                    left_checked[playing_game_length].add(playing_game.board)
+                                    autoplay(playing_game)
 
 
+                            break
                             break
 
         # pruning end
